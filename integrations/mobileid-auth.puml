@@ -1,0 +1,5 @@
+### Интеграции
+
+- [MobileID Authentication Flow](integrations/mobileid-auth.puml) — 
+  интеграция с эстонским MobileID (квалифицированная электронная подпись), 
+  OCSP verification, long polling, JWT tokens
