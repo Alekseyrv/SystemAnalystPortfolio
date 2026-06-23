@@ -1,7 +1,6 @@
 # Система подписок с биллингом
 
 ## Контекст (пример)
-
 Стриминговая платформа с 5M+ активных пользователей. Бизнес хочет запустить систему платных подписок с несколькими тарифами, пробными периодами и интеграцией с платёжными провайдерами.
 
 ## Бизнес-цели (пример)
@@ -24,3 +23,14 @@
 - Контроль реализации
 
 ## Документация
+
+### API-дизайн
+- [OpenAPI спецификация для стриминговой платформы](api-design/streaming-platform-api.yaml)
+
+### Модели данных
+- [ER Diagram: система подписок](database/er-subscription.puml)
+<img width="465" height="625" alt="image" src="https://github.com/user-attachments/assets/b2fc84a3-a7fa-4d78-900a-5aeb776d4cdf" />
+
+### Архитектура
+- [Sequence Diagram: оформление подписки](architecture/sequence-subscription.puml)
+<img width="1013" height="555" alt="image" src="https://github.com/user-attachments/assets/e9d06a8c-7053-4b81-976b-17f57bb40cb1" />
