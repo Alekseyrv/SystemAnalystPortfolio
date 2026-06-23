@@ -15,8 +15,7 @@
 
 
 # Реализация:
-## uml:
-- [UML Схема](integrations/mobileid-auth.puml)
+**uml:** [UML Схема](integrations/mobileid-auth.puml)
 
 <img width="1648" height="797" alt="image" src="https://github.com/user-attachments/assets/a83fb2ba-bce3-4103-9991-8347b4440ecf" />
 <img width="1648" height="759" alt="image" src="https://github.com/user-attachments/assets/aa6fbe37-dd60-4977-ab80-2594e23ceeb1" />
