@@ -24,5 +24,6 @@
 
 
 ## uml:
-ссылка на uml 
+- [UML Схема](integrations/mobileid-auth.puml)
+
 
