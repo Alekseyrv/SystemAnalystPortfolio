@@ -1,0 +1,45 @@
+@startuml
+title ER Diagram - Subscription System
+
+entity "users" as users {
+  * id : UUID PK
+  --
+  email : VARCHAR(255)
+  created_at : TIMESTAMP
+}
+
+entity "plans" as plans {
+  * id : UUID PK
+  --
+  name : VARCHAR(50)
+  price : DECIMAL(10,2)
+  currency : VARCHAR(3)
+  duration_days : INTEGER
+}
+
+entity "subscriptions" as subscriptions {
+  * id : UUID PK
+  --
+  * user_id : UUID FK
+  * plan_id : UUID FK
+  status : VARCHAR(20)
+  start_date : TIMESTAMP
+  end_date : TIMESTAMP
+  auto_renew : BOOLEAN
+}
+
+entity "transactions" as transactions {
+  * id : UUID PK
+  --
+  * subscription_id : UUID FK
+  amount : DECIMAL(10,2)
+  currency : VARCHAR(3)
+  status : VARCHAR(20)
+  created_at : TIMESTAMP
+}
+
+users ||--o{ subscriptions : has
+plans ||--o{ subscriptions : includes
+subscriptions ||--o{ transactions : generates
+
+@enduml
