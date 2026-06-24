@@ -4,6 +4,7 @@ It showcases how I translate complex business requirements into clear, structure
 ### Contacts
 - **Telegram**: @aleksey_rmv
 - **Email**: deagtw@gmail.com
+- **Linked.in**: www.linkedin.com/in/aleksey-romanov-0304ab9b
 
 ## Кейс 1. Content Caching System
 Оптимизация времени доступа к контенту через кэширование (Redis + Kafka)  
