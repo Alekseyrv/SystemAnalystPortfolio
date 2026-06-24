@@ -8,12 +8,12 @@ It showcases how I translate complex business requirements into clear, structure
 ## Кейс 1. Content Caching System
 Оптимизация времени доступа к контенту через кэширование (Redis + Kafka)  
 **Цель:** Сократить время ответа API с 1200ms до <100ms
-[См. полную документацию](Cache%20Case/Readme.md)
+- [См. полную документацию](Cache%20Case/Readme.md)
 
 ## Кейс 2. MobileID Authentication  
 Интеграция с эстонским MobileID (квалифицированная электронная подпись, OCSP)  
 **Цель:** Безопасная аутентификация пользователей через SIM-карту
-[См. полную документацию](MobileID/MobileID.md)
+- [См. полную документацию](MobileID/MobileID.md)
 
 
 
