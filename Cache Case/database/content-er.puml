@@ -1,0 +1,73 @@
+@startuml
+title ER Diagram - Content Database
+
+entity "content" as content {
+  * id : UUID <<PK>>
+  --
+  * type : VARCHAR(20)
+  * title : VARCHAR(255)
+  * release_year : INTEGER
+  rating : DECIMAL(3,1)
+  genres : JSONB
+  created_at : TIMESTAMP
+  updated_at : TIMESTAMP
+}
+
+entity "movies" as movies {
+  * id : UUID <<PK, FK>>
+  --
+  * duration : INTEGER
+  director : VARCHAR(255)
+  budget : DECIMAL(15,2)
+  box_office : DECIMAL(15,2)
+}
+
+entity "series" as series {
+  * id : UUID <<PK, FK>>
+  --
+  * total_seasons : INTEGER
+  * total_episodes : INTEGER
+  status : VARCHAR(20)
+  network : VARCHAR(100)
+}
+
+entity "seasons" as seasons {
+  * id : UUID <<PK>>
+  --
+  * series_id : UUID <<FK>>
+  * season_number : INTEGER
+  title : VARCHAR(255)
+  release_year : INTEGER
+}
+
+entity "episodes" as episodes {
+  * id : UUID <<PK>>
+  --
+  * season_id : UUID <<FK>>
+  * episode_number : INTEGER
+  title : VARCHAR(255)
+  duration : INTEGER
+  air_date : DATE
+}
+
+content ||--|| movies : "type='movie'"
+content ||--|| series : "type='series'"
+series ||--o{ seasons : contains
+seasons ||--o{ episodes : contains
+
+note right of content
+  Базовая таблица контента
+  Наследуется через type
+end note
+
+note right of movies
+  Фильмы: duration, director
+  TTL кэша: 3600 сек
+end note
+
+note right of series
+  Сериалы: seasons, episodes
+  TTL кэша: 1800 сек
+end note
+
+@enduml
