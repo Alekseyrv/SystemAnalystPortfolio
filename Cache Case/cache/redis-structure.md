@@ -45,3 +45,13 @@
 **Примеры:**
 - `content:movie:550e8400-e29b-41d4-a716-446655440000`
 - `content:series:660e8400-e29b-41d4-a716-446655440001`
+
+## Стратегия инвалидации
+- По TTL - автоматическая экспирация
+- По событию - при обновлении контента:
+```
+1. Kafka event: content.updated
+2. MS.ContentSynchronize получает событие
+3. DEL content:{type}:{id}
+4. При следующем запросе - cache miss и reload из БД
+```
