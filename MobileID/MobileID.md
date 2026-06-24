@@ -19,14 +19,7 @@ _В данном документе описываются условия тес
 <img width="1648" height="797" alt="image" src="https://github.com/user-attachments/assets/a83fb2ba-bce3-4103-9991-8347b4440ecf" />
 <img width="1648" height="759" alt="image" src="https://github.com/user-attachments/assets/aa6fbe37-dd60-4977-ab80-2594e23ceeb1" />
 
-1. Клиент отправляет номер телефона на Backend
-2. Backend генерирует hash (SHA-256) и запрашивает MobileID API
-3. MobileID API возвращает sessionID
-4. Клиент показывает verification code (4 цифры) пользователю
-5. Пользователь вводит PIN на телефоне
-6. Backend делает long polling до /authentication/session/{sessionID}
-7. При успехе Backend проверяет OCSP статус сертификата
-8. Backend генерирует JWT и возвращает клиенту
+
 
 
 
