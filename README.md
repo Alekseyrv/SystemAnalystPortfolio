@@ -16,5 +16,6 @@ It showcases how I translate complex business requirements into clear, structure
 **Цель:** Безопасная аутентификация пользователей через SIM-карту
 - [См. полную документацию](MobileID/MobileID.md)
 
+...
 
 
