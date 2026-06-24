@@ -1,0 +1,86 @@
+@startuml
+title HLD: Content Caching System
+
+skinparam componentStyle rectangle
+skinparam defaultFontName Arial
+skinparam backgroundColor #FEFEFE
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+' --- Слои системы ---
+
+package "Клиентский слой" #E8F5E9 {
+  [Мобильное приложение] as App
+  [Веб-клиент] as Web
+}
+
+package "Точка входа (API & Routing)" #E3F2FD {
+  [API Gateway / Nginx] as GW
+}
+
+package "Сервисный слой (Core)" #FFF3E0 {
+  [Content Service\n(Бизнес-логика, API)] as CS
+  [Content Watcher\n(Фоновый воркер)] as CW
+}
+
+package "Слой данных (Data Layer)" #FCE4EC {
+  database "PostgreSQL\n(Основная БД)" as DB
+  database "Redis\n(Кэш)" as Cache
+}
+
+package "Шина событий (Event Bus)" #F3E5F5 {
+  queue "Apache Kafka" as Kafka
+}
+
+package "Зависимые сервисы (Downstream)" #ECEFF1 {
+  [Search Service\n(Elasticsearch)] as Search
+  [Recommendation\nService] as Recs
+}
+
+' --- Взаимодействия ---
+
+App --> GW : HTTPS (REST API)
+Web --> GW : HTTPS (REST API)
+GW --> CS : HTTP/REST (Внутренняя сеть)
+
+CS --> Cache : Read/Write\nПаттерн Cache-Aside
+CS --> DB : (SQL)\nFallback при Cache Miss
+
+DB --> CW : DB Trigger\n(LISTEN/NOTIFY)
+CW --> Cache : TCP (DEL/Invalidate)
+CW --> Kafka : Publish Event\nТопик: content.events
+
+Kafka --> Search : Consume Event\n(Переиндексация)
+Kafka --> Recs : Consume Event\n(Обновление рекомендаций)
+
+' --- Пояснения к компонентам ---
+
+note right of Cache
+  **Redis**
+  - Стратегия: Cache-Aside
+  - TTL: 300 сек
+  - Ключ: content:{type}:{id}
+  - Вытеснение: allkeys-lru
+end note
+
+note bottom of DB
+  **PostgreSQL**
+  - Таблицы: content, movie_details, series_details
+  - Триггеры для уведомления об изменениях
+end note
+
+note right of Kafka
+  **Apache Kafka**
+  - Асинхронное взаимодействие
+
+end note
+
+note left of CW
+  **Content Watcher**
+  - Слушает триггеры БД
+  - Инвалидирует кэш
+  - Публикует события
+  - Работает в фоне
+end note
+
+@enduml
