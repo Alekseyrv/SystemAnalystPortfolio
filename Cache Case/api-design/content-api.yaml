@@ -1,0 +1,154 @@
+openapi: 3.0.3
+info:
+  title: Content Service API
+  description: API для получения контента (фильмы, сериалы) с кэшированием (ПРИМЕР!)
+  version: 1.0.0
+
+servers:
+  - url: https://api.streaming-platform.com/v1
+
+paths:
+  /content/{id}:
+    get:
+      summary: Получить контент по ID
+      description: Возвращает информацию о фильме или сериале. Данные кэшируются в Redis.
+      tags:
+        - Content
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            example: "550e8400-e29b-41d4-a716-446655440000"
+      
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/MovieResponse'
+                  - $ref: '#/components/schemas/SeriesResponse'
+              
+              examples:
+                movie:
+                  value:
+                    id: "550e8400-e29b-41d4-a716-446655440000"
+                    type: "movie"
+                    title: "The Matrix"
+                    releaseYear: 1999
+                    duration: 136
+                    rating: 8.7
+                    genres: ["Action", "Sci-Fi"]
+                
+                series:
+                  value:
+                    id: "660e8400-e29b-41d4-a716-446655440001"
+                    type: "series"
+                    title: "Breaking Bad"
+                    releaseYear: 2008
+                    totalSeasons: 5
+                    totalEpisodes: 62
+                    rating: 9.5
+                    genres: ["Crime", "Drama"]
+
+        '404':
+          description: Контент не найден
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "NOT_FOUND"
+                message: "Content with id not found"
+                statusCode: 404
+
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "INTERNAL_ERROR"
+                message: "Failed to fetch content"
+                statusCode: 500
+
+components:
+  schemas:
+    BaseContent:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum: [movie, series]
+        title:
+          type: string
+        releaseYear:
+          type: integer
+          minimum: 1900
+          maximum: 2100
+        rating:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 10
+        genres:
+          type: array
+          items:
+            type: string
+
+    MovieResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseContent'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum: [movie]
+            duration:
+              type: integer
+              description: "Продолжительность в минутах"
+            director:
+              type: string
+          required:
+            - type
+            - duration
+
+    SeriesResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseContent'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum: [series]
+            totalSeasons:
+              type: integer
+              minimum: 1
+            totalEpisodes:
+              type: integer
+              minimum: 1
+            status:
+              type: string
+              enum: [ongoing, completed, cancelled]
+          required:
+            - type
+            - totalSeasons
+            - totalEpisodes
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
