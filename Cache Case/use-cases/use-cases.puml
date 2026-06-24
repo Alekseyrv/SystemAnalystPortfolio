@@ -1,0 +1,55 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam defaultFontName "Arial"
+
+actor "Конечный пользователь" as User
+actor "Контент-менеджер" as Manager
+actor "Системный администратор" as Admin
+actor "Внешний сервис" as External
+
+rectangle "Сервис контента" {
+  usecase "Просмотреть детали контента" as UC1
+  usecase "Найти контент" as UC2
+  usecase "Получить контент из кэша" as UC3
+  usecase "Создать/Обновить контент" as UC4
+  usecase "Удалить контент" as UC5
+  usecase "Инвалидировать кэш" as UC6
+  usecase "Мониторить производительность кэша" as UC7
+  usecase "Настроить TTL кэша" as UC8
+  usecase "Обработать промах кэша (Cache Miss)" as UC9
+  usecase "Опубликовать событие контента" as UC10
+}
+
+User --> UC1
+User --> UC2
+External --> UC3
+
+Manager --> UC4
+Manager --> UC5
+
+Admin --> UC6
+Admin --> UC7
+Admin --> UC8
+
+UC3 ..> UC9 : <<include>>
+UC4 ..> UC6 : <<include>>
+UC5 ..> UC6 : <<include>>
+UC4 ..> UC10 : <<include>>
+UC5 ..> UC10 : <<include>>
+
+note right of UC3
+  Основной сценарий:
+  - Сначала проверка кэша
+  - Возврат при попадании (Hit)
+  - Запрос к БД при промахе (Miss)
+end note
+
+note right of UC6
+  Инвалидация кэша:
+  - Удаление записи из кэша
+  - Публикация события в Kafka
+  - Уведомление зависимых сервисов
+end note
+
+@enduml
