@@ -1,27 +1,49 @@
-_This repository contains project case studies and analysis artifacts that demonstrate my approach to systems analysis. 
-It showcases how I translate complex business requirements into clear, structured, and actionable technical specifications for development teams, helping bridge the gap between business needs and technical implementation._
+# System Analyst Portfolio
 
-### About me
+> Этот репозиторий содержит проектные кейсы и артефакты системного анализа, демонстрирующие мой подход к работе. Здесь показано, как я перевожу сложные бизнес-требования в чёткие, структурированные и применимые технические спецификации для команд разработки, помогая преодолеть разрыв между бизнес-потребностями и технической реализацией.
+
+---
+
+## 👤 About me
+
 - Системный аналитик с 5+ летним опытом проектирования микросервисной архитектуры для highload-сервисов. 
-- Веду полный цикл: от сбора требований до контроля реализации. Работаю с интеграциями, API-дизайном, БД.
+- Веду полный цикл: от сбора требований до контроля реализации.
 
-#### Contacts 
-- **Telegram**: @aleksey_rmv
+**Основные направления:**
+- **Архитектура**: микросервисы, высоконагруженные системы, интеграции
+- **Интеграции**: REST/SOAP,gRPC, Kafka, RabbitMQ, внешние сервисы
+- **Данные**: проектирование БД, SQL/NoSQL, Redis, кэширование
+- **Артефакты**: User Stories, Use Cases, BPMN, UML (ER-diagrams, Sequence-diagrams, Class-diagrams), OpenAPI/Swagger
+- **Инструменты**: PlantUML, Postman, Confluence, Jira, Figma, CharlesProxy, Git
+### Contacts
+- **Telegram**: [@aleksey_rmv](https://t.me/aleksey_rmv)
 - **Email**: deagtw@gmail.com
-- **Linked.in**: www.linkedin.com/in/aleksey-romanov-0304ab9b
-- **Current status**: Open to work
+- **LinkedIn**: [aleksey-romanov](https://www.linkedin.com/in/aleksey-romanov-0304ab9b)
+- **Статус**: 🟢 Open to work
 
-# Cases
-## Case 1. Content Caching System
+---
+
+## 📚 Cases
+### Case 1. Content Caching System
 Оптимизация времени доступа к контенту через кэширование (Redis + Kafka)  
 **Цель:** Сократить время ответа API с 1200ms до <100ms
 - [См. полную документацию](Cache%20Case/Readme.md)
 
-## Case 2. MobileID Authentication  
+### Case 2. MobileID Authentication  
 Интеграция с эстонским MobileID (квалифицированная электронная подпись, OCSP)  
 **Цель:** Безопасная аутентификация пользователей через SIM-карту
 - [См. полную документацию](MobileID/MobileID.md)
 
-## Case 3. В работе
+### Case 3. В работе
 
+
+## 📊 Repository Stats
+
+![GitHub stars](https://img.shields.io/github/stars/Alekseyrv/SystemAnalystPortfolio?style=social)
+![GitHub forks](https://img.shields.io/github/forks/Alekseyrv/SystemAnalystPortfolio?style=social)
+![GitHub last commit](https://img.shields.io/github/last-commit/Alekseyrv/SystemAnalystPortfolio)
+
+---
+
+*Feel free to explore the cases and reach out if you'd like to discuss collaboration opportunities!*
 
