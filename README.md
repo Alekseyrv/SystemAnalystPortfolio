@@ -3,7 +3,10 @@
 > Этот репозиторий содержит проектные кейсы и артефакты системного анализа, демонстрирующие мой подход к работе. Здесь показано, как я перевожу сложные бизнес-требования в чёткие, структурированные и применимые технические спецификации для команд разработки, помогая преодолеть разрыв между бизнес-потребностями и технической реализацией.
 
 ---
-
+![GitHub stars](https://img.shields.io/github/stars/Alekseyrv/SystemAnalystPortfolio?style=social)
+![GitHub forks](https://img.shields.io/github/forks/Alekseyrv/SystemAnalystPortfolio?style=social)
+![GitHub last commit](https://img.shields.io/github/last-commit/Alekseyrv/SystemAnalystPortfolio)
+---
 ### About me
 
 - Системный аналитик с 5+ летним опытом проектирования микросервисной архитектуры для highload-сервисов. 
@@ -41,11 +44,7 @@
 --- 
 
 
-## 📊 Repository Stats
 
-![GitHub stars](https://img.shields.io/github/stars/Alekseyrv/SystemAnalystPortfolio?style=social)
-![GitHub forks](https://img.shields.io/github/forks/Alekseyrv/SystemAnalystPortfolio?style=social)
-![GitHub last commit](https://img.shields.io/github/last-commit/Alekseyrv/SystemAnalystPortfolio)
 
 ---
 
