@@ -44,5 +44,4 @@
 --- 
 
 
-*Feel free to explore the cases and reach out if you'd like to discuss collaboration opportunities!*
-
+*Вопросы приветствуются*
